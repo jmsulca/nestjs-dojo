@@ -8,6 +8,9 @@
 ## Getting familiar with the CLI
 https://docs.nestjs.com/cli/usages#nest-generate
 
+## Creating a module
+`nest generate module <module-name>`
+
 ## Creating a controller
 `nest generate controller <controller-name>`
 
@@ -33,3 +36,18 @@ const document = SwaggerModule.createDocument(app, options);
 ```
 
 ## Adding a database
+### Installing Mongoose
+`npm install --save @nestjs/mongoose mongoose`
+
+`npm install --save-dev @types/mongoose`
+
+Add mongoose to the app.module
+```javascript
+import { MongooseModule } from '@nestjs/mongoose';
+
+@Module({
+  imports: [MongooseModule.forRoot('mongodb://localhost/todos')],
+})
+```
+### Create a Schema
+
