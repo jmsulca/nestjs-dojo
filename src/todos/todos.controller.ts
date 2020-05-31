@@ -9,20 +9,18 @@ import {
   Delete,
   HttpCode,
 } from '@nestjs/common';
+import { TodosService } from './todos.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('tasks')
 @Controller('todos')
 export class TodosController {
+
+  constructor(private readonly todosService: TodosService) {}
+
   @Get()
   findAll() {
-    return [
-      {
-        id: 1,
-        name: 'task 1',
-        done: false,
-      },
-    ];
+    return this.todosService.getAllTodos();
   }
 
   @Get(':id')
