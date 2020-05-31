@@ -9,7 +9,9 @@ import {
   Delete,
   HttpCode,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('tasks')
 @Controller('todos')
 export class TodosController {
   @Get()
