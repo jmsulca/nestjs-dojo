@@ -1,13 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Todo } from './schemas/todo.schema';
+import { Todo, ITodoModel } from './schemas/todo.schema';
 
 @Injectable()
 export class TodosService {
-  constructor(@InjectModel(Todo.name) private readonly todoModel: Model<Todo>) { }
+  constructor(@InjectModel(Todo.name) private readonly todoModel: ITodoModel) { }
 
   async getAllTodos(): Promise<Todo[]> {
-    return this.todoModel.find().exec();;
+    return this.todoModel.find().exec();
+  }
+
+  async getDoneTodos(): Promise<Todo[]> {
+    return this.todoModel.findDoneTodos();
+  }
+
+  async getPendingTodos(): Promise<Todo[]> {
+    return this.todoModel.findPendingTodos();
   }
 }

@@ -49,5 +49,59 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [MongooseModule.forRoot('mongodb://localhost/todos')],
 })
 ```
-### Create a Schema
+### Create the Todo class
+```javascript
+//#/src/todos/schemas/todo.schema.ts
+@Schema()
+export class Todo extends Document {
+  @Prop()
+  name: string;
 
+  @Prop()
+  done: boolean;
+};
+```
+### Create the model interface
+```javascript
+export interface ITodoModel extends Model<Todo>{
+  findDoneTodos: () => Promise<Todo[]>;
+  findPendingTodos(): Promise<Todo[]>;
+}
+```
+
+### Create the Schema
+```javascript
+const TodoSchema = SchemaFactory.createForClass(Todo);
+```
+
+### Add static methods
+```javascript
+TodoSchema.statics.findDoneTodos = async function () {
+  return this.find({done: true});
+}
+```
+
+### Add to imports in the todo.module
+```javascript
+@Module({
+  imports: [MongooseModule.forFeature([{ name: Todo.name, schema: TodoSchema, collection: 'todo' }])],
+  controllers: [TodosController],
+  providers: [TodosService],
+})
+```
+
+## Add database model connection to the service
+```javascript
+constructor(@InjectModel(Todo.name) private readonly todoModel: ITodoModel) { }
+```
+
+### Use the model
+```javascript
+async getDoneTodos(): Promise<Todo[]> {
+    return this.todoModel.findDoneTodos();
+}
+```
+
+# Some links
+https://docs.nestjs.com/
+https://medium.com/@agentwhs/complete-guide-for-typescript-for-mongoose-for-node-js-8cc0a7e470c1

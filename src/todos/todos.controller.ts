@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Param,
+  Query,
   HttpException,
   HttpStatus,
   Post,
@@ -19,8 +20,19 @@ export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
   @Get()
-  findAll() {
-    return this.todosService.getAllTodos();
+  async findAll(@Query('page') page: number, @Query('size') size: number) {
+    const data = await this.todosService.getAllTodos();
+    return {data, page, size};
+  }
+
+  @Get('done')
+  findDone() {
+    return this.todosService.getDoneTodos();
+  }
+
+  @Get('pending')
+  findPending() {
+    return this.todosService.getPendingTodos();
   }
 
   @Get(':id')
