@@ -12,7 +12,7 @@ export class Todo extends Document {
 
 export interface ITodoModel extends Model<Todo>{
   findDoneTodos: () => Promise<Todo[]>;
-  findPendingTodos(): Promise<Todo[]>;
+  findPendingTodos: () => Promise<Todo[]>;
 }
 
 const TodoSchema = SchemaFactory.createForClass(Todo);
@@ -21,8 +21,5 @@ TodoSchema.statics.findDoneTodos = async function () {
   return this.find({done: true});
 }
 
-TodoSchema.statics.findPendingTodos = async function () {
-  return this.find({done: false});
-}
 
 export {TodoSchema};

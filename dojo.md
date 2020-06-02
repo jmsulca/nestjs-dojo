@@ -102,6 +102,12 @@ async getDoneTodos(): Promise<Todo[]> {
 }
 ```
 
+## Tasks
+- Implement a route get all pending todos
+- Implement pagination for the findAll method
+- Implement the rest of methods
+- Create a CRUD for Users
+
 # Some links
 https://docs.nestjs.com/
 https://medium.com/@agentwhs/complete-guide-for-typescript-for-mongoose-for-node-js-8cc0a7e470c1
