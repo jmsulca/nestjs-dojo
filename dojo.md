@@ -107,6 +107,7 @@ async getDoneTodos(): Promise<Todo[]> {
 - Implement pagination for the findAll method
 - Implement the rest of methods
 - Create a CRUD for Users
+- Implement Guard for routes
 
 # Some links
 https://docs.nestjs.com/
