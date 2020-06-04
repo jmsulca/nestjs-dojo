@@ -13,7 +13,7 @@ import {
 import { TodosService } from './todos.service';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('tasks')
+@ApiTags('To Dos')
 @Controller('todos')
 export class TodosController {
 
@@ -22,7 +22,7 @@ export class TodosController {
   @Get()
   async findAll(@Query('page') page: number, @Query('size') size: number) {
     const data = await this.todosService.getAllTodos();
-    return {data, page, size};
+    return {data, page: page, size: size};
   }
 
   @Get('done')
@@ -36,7 +36,7 @@ export class TodosController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return {
       id,
       name: '',

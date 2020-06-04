@@ -10,7 +10,7 @@ export class Todo extends Document {
   done: boolean;
 };
 
-export interface ITodoModel extends Model<Todo>{
+export interface ITodoModel extends Model<Todo> {
   findDoneTodos: () => Promise<Todo[]>;
   findPendingTodos: () => Promise<Todo[]>;
 }

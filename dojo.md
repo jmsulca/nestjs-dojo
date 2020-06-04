@@ -103,10 +103,8 @@ async getDoneTodos(): Promise<Todo[]> {
 ```
 
 ## Tasks
-- Implement a route get all pending todos
-- Implement pagination for the findAll method
-- Implement the rest of methods
-- Create a CRUD for Users
+- Solve failing tests
+- Create a simple CRUD for Users
 - Implement Guard for routes
 
 # Some links
