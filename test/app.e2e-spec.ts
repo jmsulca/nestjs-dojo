@@ -28,4 +28,12 @@ describe('AppController (e2e)', () => {
       error: 'Forbidden'
     });
   });
+
+  it('/ (GET)', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/')
+      .set({auth: 'abc123'})
+      .expect(200);
+    expect(response.body).toEqual({api: 'Hello World!'});
+  });
 });
