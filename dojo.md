@@ -103,9 +103,7 @@ async getDoneTodos(): Promise<Todo[]> {
 ```
 
 ## Tasks
-- Solve failing tests
-- Create a simple CRUD for Users
-- Implement Guard for routes
+- Solve failing tests (Remove skip)
 
 # Some links
 https://docs.nestjs.com/

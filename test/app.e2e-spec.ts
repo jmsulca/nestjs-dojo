@@ -20,9 +20,12 @@ describe('AppController (e2e)', () => {
   });
 
   it('/ (GET)', async () => {
-    request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect({api:"Hello World!"});
+    const response = await request(app.getHttpServer())
+      .get('/').expect(403);
+    expect(response.body).toEqual({
+      statusCode: 403,
+      message: 'Forbidden resource',
+      error: 'Forbidden'
+    });
   });
 });
